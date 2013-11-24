@@ -1,0 +1,6 @@
+<!doctype html>
+<title>Twitter Mining</title>
+
+{% for correspondent,num in data.iteritems() %}
+<div><a  href="/tweet/{{correspondent}}" size="{{num}}">{{correspondent}}</a></div>
+{% endfor %}

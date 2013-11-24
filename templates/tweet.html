@@ -1,0 +1,17 @@
+<!doctype html>
+<title>Twitter Mining - {{ data['name'] }}</title>
+<h1>{{data['name']}}</h1>
+<h2><a  href="/tweet/{{data['user_name']}}">{{data['user_name']}}</a></h2>
+<p>Recipients</p>
+{% for recipient in data['recipients'] %}
+   <p><a href ="../tweet/{{recipient}}">{{recipient}}</a></p>
+{% endfor %}
+
+<p>Novels mentioned</p>
+{% for book in data['novels'] %}
+  <p><a href ="../message/{{book['id']}}">{{book['book']}}</a>
+  {% if book['recipient'] %}
+  to {{book['recipient']}}
+  {% endif %}
+  </p>
+{% endfor %}

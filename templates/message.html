@@ -1,0 +1,9 @@
+<!doctype html>
+<title>Twitter Mining</title>
+
+<div><a  href="/message/{{datum['id']}}" size="{{num}}">{{datum['id']}}</a></div>
+<div><a  href="../tweet/{{datum['from_user']}}" size="{{num}}">{{datum['from_user']}}</a></div>
+{% if datum['to_user'] != None %}
+<div><a  href="../tweet/{{datum['to_user']}}" size="{{num}}">{{datum['to_user']}}</a></div>
+{% endif %}
+<div>{{datum['text']}}</div>
