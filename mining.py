@@ -1,5 +1,6 @@
 from flask import Flask,app,render_template
 from parsing import Parsing
+from data import DataLayer
 
 app = Flask(__name__)
 
@@ -29,6 +30,23 @@ def tweet(messageid=None):
     datum = parz.get_tweet(messageid)
     return render_template("message.html", datum=datum)
 
+@app.route('/data/<api>', methods=['GET'])
+def show_data(api=None): 
+    
+    if api == "network":
+        
+        return render_template('network.html')
+       
+       
+@app.route('/data/json/<api>', methods=['GET']) 
+def data_api(api=None):
+    if api is None:
+        print "Please define an API type"
+        
+    raw = DataLayer()
+    if api == "network":
+        return raw.network()
+        
 
 if __name__ == '__main__':
     app.run(debug=True)
