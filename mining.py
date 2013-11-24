@@ -7,8 +7,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-app = Flask(__name__)
-
 @app.route('/tweet/', methods=['GET'])
 @app.route('/tweet/<name>', methods=['GET'])
 def tweeter(name=None):
