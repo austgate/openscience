@@ -22,7 +22,7 @@ class DataLayer():
         nodes.append({ 'name': 'Weird Council', 'group':0})
         for k,v in listing.iteritems():
             num_tweets += 1
-            nodes.append({ 'name':k, 'group':0})
+            nodes.append({ 'name':k, 'group':0, "value": v})
             links.append({ "source": 0,"target": num_tweets,"value": v})
             
         return json.dumps({'nodes':nodes, 'links':links})
