@@ -42,12 +42,12 @@ class DataLayer():
                 book = self._getnovels(result['text'])
                 if book:
                     novels[self._converttitle(book.group().strip())] += 1  
-        print novels
+
         num_tweets=0
         nodes.append({ 'name': 'Weird Council', 'group':0})
         for k,v in novels.iteritems():
             num_tweets += 1
-            nodes.append({ 'name':k, 'group':num_tweets, "value": v})
+            nodes.append({ 'name':k, 'group':num_tweets, "value": (v * 5)})
             links.append({ "source": 0,"target": 0,"value": v})
             
         return json.dumps({'nodes':nodes, 'links':links})
@@ -58,7 +58,7 @@ class DataLayer():
             return match
         
     def _converttitle(self, title):
-        print title
+
         if title == "Perdido" or title == "PSS":
             return "Perdido Street Station"
         elif title == "Iron":
