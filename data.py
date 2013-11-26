@@ -41,7 +41,7 @@ class DataLayer():
             data = json.loads(open(filez, 'r').read())
             for result in data['results']:
                 for d in result['text'].split():
-                    if d not in stopwords and d.strip() is not None:
+                    if d not in stopwords and d[:1] is not "@":
                         listing[self.clean_punc(d)] += 1  
         wordfreq = sorted(listing.items())
         return wordfreq
