@@ -34,9 +34,15 @@ def tweet(messageid=None):
 def show_data(api=None): 
     
     if api == "network":
-        
-        return render_template('network.html')
-       
+        data_api = api
+        return render_template('book.html', data_api=data_api)
+    if api == "book":
+        data_api = api
+        return render_template('book.html',data_api=data_api)
+    if api == "words":
+        raw = DataLayer()
+        words = raw.count_words()
+        return render_template("word.html", words=words)         
        
 @app.route('/data/json/<api>', methods=['GET']) 
 def data_api(api=None):
@@ -46,7 +52,11 @@ def data_api(api=None):
     raw = DataLayer()
     if api == "network":
         return raw.network()
-        
+    if api == "book":
+        return raw.books() 
+    if api == "words":
+        words = raw.count_words()
+        return render_template("word.html", words=words)  
 
 if __name__ == '__main__':
     app.run(debug=True)
