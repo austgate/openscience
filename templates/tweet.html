@@ -1,10 +1,16 @@
 <!doctype html>
 <title>Twitter Mining - {{ data['name'] }}</title>
 <h1>{{data['name']}}</h1>
+<p>Number of tweets&nbsp;{{data['count']}}</p>
 <h2><a  href="/tweet/{{data['user_name']}}">{{data['user_name']}}</a></h2>
 <p>Recipients</p>
 {% for recipient in data['recipients'] %}
    <p><a href ="../tweet/{{recipient}}">{{recipient}}</a></p>
+{% endfor %}
+
+<p>Dates tweets sent</p>
+{% for date in data['dates'] %}
+  <p>{{date}}</p>
 {% endfor %}
 
 <p>Novels mentioned</p>

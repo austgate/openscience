@@ -6,4 +6,5 @@
 {% if datum['to_user'] != None %}
 <div><a  href="../tweet/{{datum['to_user']}}" size="{{num}}">{{datum['to_user']}}</a></div>
 {% endif %}
+<div>{{datum['created_at']}}</div>
 <div>{{datum['text']}}</div>

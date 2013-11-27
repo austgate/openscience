@@ -24,16 +24,18 @@ class Parsing():
         novels = {}
         books = []
         recipients = set()
+        tweet_dates = []
         user = ""
         user_name = ""
         files = glob.glob('data/*.txt')
         if files is None:
             print "failed to find any files"
-
+        number_of_tweets = 0
         for filez in files:
             data = json.loads(open(filez, 'r').read()) 
             for result in data['results']:
                 if result['from_user'] == author:
+                    number_of_tweets += 1
                     user = result['from_user']
                     user_name = result['from_user_name']
                     book = self._getnovels(result['text'])
@@ -51,13 +53,16 @@ class Parsing():
                     recipient = self._getrecipient(result['text'])
                     if recipient:
                         recipients.add(recipient.group()[1:])
+                    tweet_dates.append(result['created_at'])
                     
 
         listing = {
+            'count' : number_of_tweets, 
             'user_name' : user,
              'name' : user_name,
              'novels' : books, 
-             'recipients' : recipients    
+             'recipients' : recipients, 
+            'dates' : tweet_dates    
         }
 
         return listing
@@ -66,7 +71,7 @@ class Parsing():
         files = glob.glob('data/*.txt')
         if files is None:
             print "failed to find any files"
-        print "mesage id", mid
+  
         for filez in files:
             data = json.loads(open(filez, 'r').read()) 
             for result in data['results']:
